@@ -1,0 +1,23 @@
+public class Ramen {
+	String name;
+	int number;
+	int price ;
+	String company;
+	String info;
+
+	public Ramen() {
+		
+	}
+
+	public Ramen(String name, int number, int price, String company, String info) {
+		this.name=name;
+		this.number=number;
+		this.price=price;
+		this.company=company;
+		this.info=info;
+	}
+	
+	public void printInfo () {
+		System.out.println("name : " + name + "number : " + number + "price : " + price + "company : " + company + "Information : " + info + "\n");
+	}
+}
