@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class RamenManager {
+	
+	Ramen ramen;
+	Scanner input;
+	
+	RamenManager(Scanner input) {
+		this.input = input;
+	}
+	
+	public void addCupRamen() {
+		ramen = new Ramen();
+		System.out.print("Ramen Number:");
+		ramen.number = input.nextInt();
+		System.out.print("Ramen Name:");
+		ramen.name=input.next();
+		System.out.print("Ramen price:");
+		ramen.price=input.nextInt();
+		System.out.print("Ramen Company:");
+		ramen.company=input.next();
+		System.out.print("Extra information:");
+		ramen.info=input.next();
+		System.out.println(ramen.number+","+ramen.name+","+ramen.price+","+ramen.company+","+ramen.info);
+	}
+	public void deleteCupRamen() {
+		System.out.print("Ramen Number:");
+		int number = input.nextInt();
+		if (ramen == null) {
+			System.out.println("This Ramen has not been registered \n");
+			return;
+		}
+		if (ramen.number == number) {
+			ramen = null;
+			System.out.print("Ramen is deleted");
+		}
+	}	
+	public void editCupRamen() {
+		System.out.print("Ramen Number:");
+		int number = input.nextInt();
+		if (ramen.number == number) {
+			System.out.println("This Ramen to be edited is " + number);
+		}
+}	
+	public void viewCupRamen() {
+		System.out.print("Ramen Number:");
+		int number = input.nextInt();
+		if (ramen.number == number) {
+			ramen.printInfo();
+		}
+	}
+}
