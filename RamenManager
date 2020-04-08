@@ -41,7 +41,46 @@ public class RamenManager {
 		if (ramen.number == number) {
 			System.out.println("This Ramen to be edited is " + number);
 		}
-}	
+
+			int num =-1;
+			while(num !=6) {
+				System.out.println("Cup-Ramen Edit Menu");
+				System.out.println("Select one number between 1-6");
+				System.out.println("1. Edit Ramen number");
+				System.out.println("2. Edit Ramen name");
+				System.out.println("3. Edit Ramen price");
+				System.out.println("4. Edit Ramen company");
+				System.out.println("5. Edit Ramen information");
+				System.out.println("6. Exit");
+				num=input.nextInt();
+				
+				if (num ==1) {
+					System.out.print("Ramen Number:");
+					ramen.number = input.nextInt();
+				}
+				else if (num ==2) {
+					System.out.print("Ramen Name:");
+					ramen.name=input.next();
+				}
+				else if (num ==3) {
+					System.out.print("Ramen price:");
+					ramen.price=input.nextInt();
+				}
+				else if (num ==4) {
+					System.out.print("Ramen Company:");
+					ramen.company=input.next();
+				}
+				else if (num ==5) {
+					System.out.print("Extra information:");
+					ramen.info=input.next();
+				}
+				else {
+					continue;
+				}
+				}
+	}
+
+	
 	public void viewCupRamen() {
 		System.out.print("Ramen Number:");
 		int number = input.nextInt();
