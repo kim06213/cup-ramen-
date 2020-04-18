@@ -13,7 +13,7 @@ public class MenuManager {
 			System.out.println("1. Add New Cup-Ramen");
 			System.out.println("2. Delete Cup-Ramen");
 			System.out.println("3. Edit Cup-Ramen");
-			System.out.println("4. View Cup-Ramen");
+			System.out.println("4. View Cup-Ramens");
 			System.out.println("5. Exit");
 			num=input.nextInt();
 			if (num ==1) {
@@ -26,7 +26,7 @@ public class MenuManager {
 				ramanManager.editCupRamen();
 			}
 			else if (num ==4) {
-				ramanManager.viewCupRamen();
+				ramanManager.viewCupRamens();
 			}
 			else {
 				continue;
