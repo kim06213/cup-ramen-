@@ -1,12 +1,14 @@
+
 public class Ramen {
 	String name;
 	int number;
 	int price ;
 	String company;
 	String info;
+	static int numRamenRegistered = 0;
 
 	public Ramen() {
-		
+		numRamenRegistered++;
 	}
 
 	public Ramen(String name, int number, int price, String company, String info) {
@@ -15,6 +17,7 @@ public class Ramen {
 		this.price=price;
 		this.company=company;
 		this.info=info;
+		numRamenRegistered++;
 	}
 	
 	public void printInfo () {
