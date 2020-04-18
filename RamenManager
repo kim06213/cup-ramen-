@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RamenManager {
 	
-	Ramen ramen;
+	ArrayList<Ramen> ramens = new ArrayList<Ramen>();
 	Scanner input;
 	
 	RamenManager(Scanner input) {
@@ -10,7 +11,7 @@ public class RamenManager {
 	}
 	
 	public void addCupRamen() {
-		ramen = new Ramen();
+		Ramen ramen = new Ramen();
 		System.out.print("Ramen Number:");
 		ramen.number = input.nextInt();
 		System.out.print("Ramen Name:");
@@ -21,71 +22,85 @@ public class RamenManager {
 		ramen.company=input.next();
 		System.out.print("Extra information:");
 		ramen.info=input.next();
+		ramens.add(ramen);
 		System.out.println(ramen.number+","+ramen.name+","+ramen.price+","+ramen.company+","+ramen.info);
 	}
 	public void deleteCupRamen() {
 		System.out.print("Ramen Number:");
 		int number = input.nextInt();
-		if (ramen == null) {
-			System.out.println("This Ramen has not been registered \n");
+		int index = -1;
+		for (int i = 0 ; i < ramens.size(); i++) {
+			if (ramens.get(i).number == number){	
+				index = i;
+				break;
+				}
+		}
+		if (index >=0) {
+			ramens.remove(index);
+			Ramen.numRamenRegistered--;
+			System.out.println("The Cup Ramen " + number + "is deleted");
+		}
+		else { 
+			System.out.println("The Cup Ramen has not been registered");
 			return;
 		}
-		if (ramen.number == number) {
-			ramen = null;
-			System.out.print("Ramen is deleted");
-		}
-	}	
+	}
+		
 	public void editCupRamen() {
 		System.out.print("Ramen Number:");
 		int number = input.nextInt();
-		if (ramen.number == number) {
-			System.out.println("This Ramen to be edited is " + number);
-		}
+		for (int i =0; i<ramens.size(); i++) {
+			Ramen ramen = ramens.get(i);
+			if (ramens.get(i).number == number) {
+				System.out.println("This Ramen to be edited is " + number);
 
-			int num =-1;
-			while(num !=6) {
-				System.out.println("Cup-Ramen Edit Menu");
-				System.out.println("Select one number between 1-6");
-				System.out.println("1. Edit Ramen number");
-				System.out.println("2. Edit Ramen name");
-				System.out.println("3. Edit Ramen price");
-				System.out.println("4. Edit Ramen company");
-				System.out.println("5. Edit Ramen information");
-				System.out.println("6. Exit");
-				num=input.nextInt();
-				
-				if (num ==1) {
-					System.out.print("Ramen Number:");
-					ramen.number = input.nextInt();
+				int num =-1;
+				while(num !=6) {
+					System.out.println("Cup-Ramen Edit Menu");
+					System.out.println("Select one number between 1-6");
+					System.out.println("1. Edit Ramen number");
+					System.out.println("2. Edit Ramen name");
+					System.out.println("3. Edit Ramen price");
+					System.out.println("4. Edit Ramen company");
+					System.out.println("5. Edit Ramen information");
+					System.out.println("6. Exit");
+					num=input.nextInt();
+
+					if (num ==1) {
+						System.out.print("Ramen Number:");
+						ramen.number = input.nextInt();
+					}
+					else if (num ==2) {
+						System.out.print("Ramen Name:");
+						ramen.name=input.next();
+					}
+					else if (num ==3) {
+						System.out.print("Ramen price:");
+						ramen.price=input.nextInt();
+					}
+					else if (num ==4) {
+						System.out.print("Ramen Company:");
+						ramen.company=input.next();
+					}
+					else if (num ==5) {
+						System.out.print("Extra information:");
+						ramen.info=input.next();
+					}
+					else {
+						continue;
+					}
 				}
-				else if (num ==2) {
-					System.out.print("Ramen Name:");
-					ramen.name=input.next();
-				}
-				else if (num ==3) {
-					System.out.print("Ramen price:");
-					ramen.price=input.nextInt();
-				}
-				else if (num ==4) {
-					System.out.print("Ramen Company:");
-					ramen.company=input.next();
-				}
-				else if (num ==5) {
-					System.out.print("Extra information:");
-					ramen.info=input.next();
-				}
-				else {
-					continue;
-				}
-				}
+				break;
+			}
+		}
 	}
 
 	
-	public void viewCupRamen() {
+	public void viewCupRamens() {
+		System.out.println("Total number of registered Cup_Ramen: " + Ramen.numRamenRegistered);
 		System.out.print("Ramen Number:");
-		int number = input.nextInt();
-		if (ramen.number == number) {
-			ramen.printInfo();
+		for (int i =0; i<ramens.size(); i++) {
+			ramens.get(i).printInfo();
+		}
 		}
 	}
-}
