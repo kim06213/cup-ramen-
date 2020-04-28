@@ -1,14 +1,18 @@
+package ramen;
+
+import java.util.Scanner;
 
 public class Ramen {
-	String name;
-	int number;
-	int price ;
-	String company;
-	String info;
-	static int numRamenRegistered = 0;
+	protected RamenKind kind = RamenKind.Normal;
+	protected String name;
+	protected int number;
+	protected int price ;
+	protected String company;
+	protected String info;
+
 
 	public Ramen() {
-		numRamenRegistered++;
+
 	}
 
 	public Ramen(String name, int number, int price, String company, String info) {
@@ -17,10 +21,98 @@ public class Ramen {
 		this.price=price;
 		this.company=company;
 		this.info=info;
-		numRamenRegistered++;
+
 	}
-	
+	public Ramen(RamenKind kind, String name, int number, int price, String company, String info) {
+		this.kind = kind;
+		this.name=name;
+		this.number=number;
+		this.price=price;
+		this.company=company;
+		this.info=info;
+	}
+	public RamenKind getKind() {
+		return kind;
+	}
+
+	public void setKind(RamenKind kind) {
+		this.kind = kind;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
 	public void printInfo () {
-		System.out.println("name : " + name + "number : " + number + "price : " + price + "company : " + company + "Information : " + info + "\n");
+		String rkind = "default";
+		switch(this.kind) {
+		case Normal:
+			rkind = "Normal";
+			break;
+		case White:
+			rkind = "White Ramen";
+			break;
+		case NoSoup:
+			rkind = "Ramen with no Soup";
+			break;
+		case Etc:
+			rkind = "Etc";
+			break;
+			
+		}
+		System.out.println("Kind : " + rkind + " name : " + name + " number : " + number + " price : " + price + " company : " + company + " Information : " + info + "\n");
+	}
+	public void getUserInPut(Scanner input) {
+		System.out.print("Ramen Number:");
+		int number = input.nextInt();
+		this.setNumber(number);
+		System.out.print("Ramen Name:");
+		String name=input.next();
+		this.setName(name);
+		System.out.print("Ramen price:");
+		int price=input.nextInt();
+		this.setPrice(price);
+		System.out.print("Ramen Company:");
+		String company=input.next();
+		this.setCompany(company);
+		System.out.print("Extra information:");
+		String info=input.next();
+		this.setInfo(info);
 	}
 }
