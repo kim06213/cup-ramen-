@@ -1,0 +1,11 @@
+package ramen;
+
+public enum RamenKind {
+	Normal,
+
+	White,
+	
+	NoSoup,
+	
+	Etc,
+}
