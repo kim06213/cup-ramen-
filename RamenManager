@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import ramen.NoSoup;
+import ramen.Ramen;
+import ramen.WhiteRamen;
+
 public class RamenManager {
 	
 	ArrayList<Ramen> ramens = new ArrayList<Ramen>();
@@ -11,33 +15,50 @@ public class RamenManager {
 	}
 	
 	public void addCupRamen() {
-		Ramen ramen = new Ramen();
-		System.out.print("Ramen Number:");
-		ramen.number = input.nextInt();
-		System.out.print("Ramen Name:");
-		ramen.name=input.next();
-		System.out.print("Ramen price:");
-		ramen.price=input.nextInt();
-		System.out.print("Ramen Company:");
-		ramen.company=input.next();
-		System.out.print("Extra information:");
-		ramen.info=input.next();
-		ramens.add(ramen);
-		System.out.println(ramen.number+","+ramen.name+","+ramen.price+","+ramen.company+","+ramen.info);
+		int kind = 0;
+		Ramen ramen;
+		while (kind !=1 && kind != 2 && kind != 3 && kind != 4) {
+		System.out.print("Select Ramen Kind : ");
+		System.out.print("1 for Noraml Ramen");
+		System.out.print("2 for White Ramen");
+		System.out.print("3 for No Soup Ramen");
+		System.out.print("4 for Etc Ramen");
+		kind = input.nextInt();
+		if (kind == 1) {
+			ramen = new Ramen();
+			ramen.getUserInPut(input);
+			ramens.add(ramen);
+			break;
+		}
+		else if (kind == 2) {
+			ramen = new WhiteRamen();
+			ramen.getUserInPut(input);
+			ramens.add(ramen);
+			break;
+		}
+		else if (kind == 3) {
+			ramen = new NoSoup();
+			ramen.getUserInPut(input);
+			ramens.add(ramen);
+			break;
+		}
+		else {1
+			System.out.print("Select num for Student Kind between 1 ~ 4");
+		}
+		}
 	}
 	public void deleteCupRamen() {
 		System.out.print("Ramen Number:");
 		int number = input.nextInt();
 		int index = -1;
 		for (int i = 0 ; i < ramens.size(); i++) {
-			if (ramens.get(i).number == number){	
+			if (ramens.get(i).getNumber() == number){	
 				index = i;
 				break;
 				}
 		}
 		if (index >=0) {
 			ramens.remove(index);
-			Ramen.numRamenRegistered--;
 			System.out.println("The Cup Ramen " + number + "is deleted");
 		}
 		else { 
@@ -51,7 +72,7 @@ public class RamenManager {
 		int number = input.nextInt();
 		for (int i =0; i<ramens.size(); i++) {
 			Ramen ramen = ramens.get(i);
-			if (ramens.get(i).number == number) {
+			if (ramens.get(i).getNumber() == number) {
 				System.out.println("This Ramen to be edited is " + number);
 
 				int num =-1;
@@ -68,23 +89,29 @@ public class RamenManager {
 
 					if (num ==1) {
 						System.out.print("Ramen Number:");
-						ramen.number = input.nextInt();
+						int numb = input.nextInt();
+						ramen.setNumber(numb);
 					}
 					else if (num ==2) {
 						System.out.print("Ramen Name:");
-						ramen.name=input.next();
+						String name=input.next();
+						ramen.setName(name);
+						
 					}
 					else if (num ==3) {
 						System.out.print("Ramen price:");
-						ramen.price=input.nextInt();
+						int price=input.nextInt();
+						ramen.setPrice(price);
 					}
 					else if (num ==4) {
 						System.out.print("Ramen Company:");
-						ramen.company=input.next();
+						String company=input.next();
+						ramen.setCompany(company);
 					}
 					else if (num ==5) {
 						System.out.print("Extra information:");
-						ramen.info=input.next();
+						String info=input.next();
+						ramen.setInfo(info);
 					}
 					else {
 						continue;
@@ -97,8 +124,7 @@ public class RamenManager {
 
 	
 	public void viewCupRamens() {
-		System.out.println("Total number of registered Cup_Ramen: " + Ramen.numRamenRegistered);
-		System.out.print("Ramen Number:");
+		System.out.println("Total number of registered Cup_Ramen: " + ramens.size());
 		for (int i =0; i<ramens.size(); i++) {
 			ramens.get(i).printInfo();
 		}
