@@ -2,25 +2,21 @@ package ramen;
 
 import java.util.Scanner;
 
-public class NoSoup extends Ramen {
+public class NoSoup extends Ramen implements RamenInput{
 	
 	protected String noSoupInfo;
-	
-	public void getUserInPut(Scanner input) {
-		
 
+	public NoSoup(RamenKind nosoup) {
+	
+	}
+
+	public void getUserInput(Scanner input) {
+		setRamenNumber( this, input);
 		
-		System.out.print("Ramen Number:");
-		int number = input.nextInt();
-		this.setNumber(number);
+		setRamenName(this, input);
 		
-		System.out.print("Ramen Name:");
-		String name=input.next();
-		this.setName(name);
+		setRamenprice( this,  input);
 		
-		System.out.print("Ramen price:");
-		int price=input.nextInt();
-		this.setPrice(price);
 		char answer = 'x';
 		while( answer != 'y' && answer!= 'Y' && answer!= 'n' && answer!= 'N') {
 			System.out.print("Is the owner of Company a Celebrity? (Y/N)");
@@ -37,9 +33,34 @@ public class NoSoup extends Ramen {
 			}
 			else {
 			}
-		}
-		System.out.print("What kind of NoSoup Ramen?");
-		String info=input.next();
-		this.setInfo(info);
-		}
+		
+	}
 }
+
+
+	public void printInfo() {
+		String rkind = getKindString();
+		System.out.println("Kind : " + rkind + " name : " + name + " number : " + number + " price : " + price + " company : " + company + " Information : " + info + "\n");
+	}
+	public String getKindString() {
+		String rkind = "default";
+		switch(this.kind) {
+		case Normal:
+			rkind = "Normal";
+			break;
+		case White:
+			rkind = "White Ramen";
+			break;
+		case NoSoup:
+			rkind = "Ramen with no Soup";
+			break;
+		case Etc:
+			rkind = "Etc";
+			break;
+		default:
+		}
+		return rkind;
+	}
+		
+	}
+
