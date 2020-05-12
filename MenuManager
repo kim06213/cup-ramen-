@@ -6,32 +6,38 @@ public class MenuManager {
 		Scanner input = new Scanner(System.in);
 		RamenManager ramanManager = new RamenManager(input);
 		int num =-1;
-		
+
 		while(num !=5) {
-			System.out.println("***Cup-Ramen Manager***");
-			System.out.println("Select one number between 1-5");
-			System.out.println("1. Add New Cup-Ramen");
-			System.out.println("2. Delete Cup-Ramen");
-			System.out.println("3. Edit Cup-Ramen");
-			System.out.println("4. View Cup-Ramens");
-			System.out.println("5. Exit");
+			showMenu();
 			num=input.nextInt();
-			if (num ==1) {
+			switch(num){
+			case 1:
 				ramanManager.addCupRamen();
-			}
-			else if (num ==2) {
+				break;
+			case 2 :
 				ramanManager.deleteCupRamen();
-			}
-			else if (num ==3) {
+				break;
+			case 3:
 				ramanManager.editCupRamen();
-			}
-			else if (num ==4) {
+				break;
+			case 4 :
 				ramanManager.viewCupRamens();
-			}
-			else {
+				break;
+			default:
 				continue;
+
 			}
-			}
+		}
+	}
+
+	public static void showMenu() {
+		System.out.println("***Cup-Ramen Manager***");
+		System.out.println("Select one number between 1-5");
+		System.out.println("1. Add New Cup-Ramen");
+		System.out.println("2. Delete Cup-Ramen");
+		System.out.println("3. Edit Cup-Ramen");
+		System.out.println("4. View Cup-Ramens");
+		System.out.println("5. Exit");
 	}
 }
 
