@@ -2,7 +2,7 @@ package ramen;
 
 import java.util.Scanner;
 
-public class Ramen {
+public abstract class Ramen {
 	protected RamenKind kind = RamenKind.Normal;
 	protected String name;
 	protected int number;
@@ -31,6 +31,10 @@ public class Ramen {
 		this.company=company;
 		this.info=info;
 	}
+	public Ramen(RamenKind kind) {
+
+	}
+
 	public RamenKind getKind() {
 		return kind;
 	}
@@ -79,40 +83,31 @@ public class Ramen {
 		this.info = info;
 	}
 
-	public void printInfo () {
-		String rkind = "default";
-		switch(this.kind) {
-		case Normal:
-			rkind = "Normal";
-			break;
-		case White:
-			rkind = "White Ramen";
-			break;
-		case NoSoup:
-			rkind = "Ramen with no Soup";
-			break;
-		case Etc:
-			rkind = "Etc";
-			break;
-			
-		}
-		System.out.println("Kind : " + rkind + " name : " + name + " number : " + number + " price : " + price + " company : " + company + " Information : " + info + "\n");
-	}
-	public void getUserInPut(Scanner input) {
-		System.out.print("Ramen Number:");
-		int number = input.nextInt();
-		this.setNumber(number);
-		System.out.print("Ramen Name:");
-		String name=input.next();
-		this.setName(name);
-		System.out.print("Ramen price:");
-		int price=input.nextInt();
-		this.setPrice(price);
-		System.out.print("Ramen Company:");
-		String company=input.next();
-		this.setCompany(company);
-		System.out.print("Extra information:");
-		String info=input.next();
-		this.setInfo(info);
-	}
+	public abstract void printInfo ();{
+}
+public void setRamenNumber( RamenInput ramen, Scanner input) {
+	System.out.print("Ramen Number:");
+	int numb = input.nextInt();
+	ramen.setNumber(numb);
+}
+public void setRamenName( RamenInput ramen, Scanner input) {
+	System.out.print("Ramen Name:");
+	String numb = input.nextLine();
+	ramen.setName(numb);
+}
+public void setRamenprice( RamenInput ramen, Scanner input) {
+	System.out.print("Ramen Price:");
+	int numb = input.nextInt();
+	ramen.setPrice(numb);
+}
+public void setCompany( RamenInput ramen, Scanner input) {
+	System.out.print("Ramen Company:");
+	String numb = input.nextLine();
+	ramen.setCompany(numb);
+}
+public void setInfo( RamenInput ramen, Scanner input) {
+	System.out.print("Ramen Info:");
+	String numb = input.nextLine();
+	ramen.setInfo(numb);
+}
 }
