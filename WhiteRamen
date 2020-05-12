@@ -2,9 +2,14 @@ package ramen;
 
 import java.util.Scanner;
 
-public class WhiteRamen extends Ramen {
+public class WhiteRamen extends Ramen implements RamenInput{
 	
-	public void getUserInPut(Scanner input) {
+	public WhiteRamen(RamenKind kind) {
+		super(kind);
+	}
+	
+
+	public void getUserInput(Scanner input) {
 		System.out.print("Ramen Number:");
 		int number = input.nextInt();
 		this.setNumber(number);
@@ -32,10 +37,28 @@ public class WhiteRamen extends Ramen {
 			}
 			else {
 			}
+		
+	}
+
+	}
+	public void printInfo () {
+		String rkind = "default";
+		switch(this.kind) {
+		case Normal:
+			rkind = "Normal";
+			break;
+		case White:
+			rkind = "White Ramen";
+			break;
+		case NoSoup:
+			rkind = "Ramen with no Soup";
+			break;
+		case Etc:
+			rkind = "Etc";
+			break;
+		}
+		System.out.println("Kind : " + rkind + " name : " + name + " number : " + number + " price : " + price + " company : " + company + " Information : " + info + "\n");
+	}
+			
 		}
 
-		System.out.print("Extra information:");
-		String info=input.next();
-		this.setInfo(info);
-		}
-	}
