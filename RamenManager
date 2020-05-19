@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import ramen.NoSoup;
@@ -20,146 +21,155 @@ public class RamenManager{
 	public void addCupRamen() {
 		int kind = 0;
 		RamenInput ramenInput;
-		while (kind !=1 && kind != 2 && kind != 3 && kind != 4) {
-			System.out.println("Select Ramen Kind : ");
-			System.out.println("1 for Noraml Ramen");
-			System.out.println("2 for White Ramen");
-			System.out.println("3 for No Soup Ramen");
-			System.out.println("4 for Etc Ramen");
-			kind = input.nextInt();
-			if (kind == 1) {
-				ramenInput = new NormalRamen(RamenKind.Normal);
-				ramenInput.getUserInput(input);
-				ramenInpnut.add(ramenInput);
-				break;
+		while (kind  < 1 || kind > 4 ) {
+			try {
+				System.out.println("Select Ramen Kind : ");
+				System.out.println("1 for Noraml Ramen");
+				System.out.println("2 for White Ramen");
+				System.out.println("3 for No Soup Ramen");
+				System.out.println("4 for Etc Ramen");
+				kind = input.nextInt();
+				if (kind == 1) {
+					ramenInput = new NormalRamen(RamenKind.Normal);
+					ramenInput.getUserInput(input);
+					ramenInpnut.add(ramenInput);
+					break;
+				}
+				else if (kind == 2) {
+					ramenInput = new WhiteRamen(RamenKind.White);
+					ramenInput.getUserInput(input);
+					ramenInpnut.add(ramenInput);
+					break;
+				}
+				else if (kind == 3) {
+					ramenInput = new NoSoup(RamenKind.NoSoup);
+					ramenInput.getUserInput(input);
+					ramenInpnut.add(ramenInput);
+					break;
+				}
+				else {
+					System.out.print("Select num for Student Kind between 1 ~ 4");
+				}
 			}
-			else if (kind == 2) {
-				ramenInput = new WhiteRamen(RamenKind.White);
-				ramenInput.getUserInput(input);
-				ramenInpnut.add(ramenInput);
-				break;
-			}
-			else if (kind == 3) {
-				ramenInput = new NoSoup(RamenKind.NoSoup);
-				ramenInput.getUserInput(input);
-				ramenInpnut.add(ramenInput);
-				break;
-			}
-			else {
-				System.out.print("Select num for Student Kind between 1 ~ 4");
+			catch(InputMismatchException e) {
+				System.out.println("please put an number between 1 and 4!");
+				if (input.hasNext()) {
+					input.next();
+				}
+				kind = -1;
 			}
 		}
 	}
-	public void deleteCupRamen() {
-		System.out.print("Ramen Number:");
-		int number = input.nextInt();
-		int index = findIndex(number);
-		removefromRamens(index, number);
-		
-	}
-	public int findIndex(int number) {
-		int index = -1;
-		for (int i = 0 ; i < ramenInpnut.size(); i++) {
-			if (ramenInpnut.get(i).getNumber() == number){	
-				index = i;
-				break;
-			}
-		}
-		return index;
-	}
-	public int removefromRamens(int index, int number) {
-		if (index >=0) {
-			ramenInpnut.remove(index);
-			System.out.println("The Cup Ramen " + number + "is deleted");
-			return 1;
-		}
-		else { 
-			System.out.println("The Cup Ramen has not been registered");
-			return -1;
-		}
-	}
+		public void deleteCupRamen() {
+			System.out.print("Ramen Number:");
+			int number = input.nextInt();
+			int index = findIndex(number);
+			removefromRamens(index, number);
 
-	public void editCupRamen() {
-		System.out.print("Ramen Number:");
-		int number = input.nextInt();
-		for (int i =0; i<ramenInpnut.size(); i++) {
-			RamenInput ramen = ramenInpnut.get(i);
-			if (ramen.getNumber() == number) {
-				System.out.println("This Ramen to be edited is " + number);
+		}
+		public int findIndex(int number) {
+			int index = -1;
+			for (int i = 0 ; i < ramenInpnut.size(); i++) {
+				if (ramenInpnut.get(i).getNumber() == number){	
+					index = i;
+					break;
+				}
+			}
+			return index;
+		}
+		public int removefromRamens(int index, int number) {
+			if (index >=0) {
+				ramenInpnut.remove(index);
+				System.out.println("The Cup Ramen " + number + "is deleted");
+				return 1;
+			}
+			else { 
+				System.out.println("The Cup Ramen has not been registered");
+				return -1;
+			}
+		}
 
-				int num =-1;
-				while(num !=6) {
-					showEditMenu();
-					num=input.nextInt();
-					switch(num) {
-					case 1:
-						setRamenNumber(ramen,input);
-						break;
-					case 2:
-						setRamenNumber(ramen,input);
-						break;
-					case 3:
-						setRamenPrice(ramen,input);
-						break;
-					case 4:
-						setCompany( ramen,input);
-						break;
-					case 5 :
-						setInfo( ramen,input);
-						break;
-					default:
-						continue;
+		public void editCupRamen() {
+			System.out.print("Ramen Number:");
+			int number = input.nextInt();
+			for (int i =0; i<ramenInpnut.size(); i++) {
+				RamenInput ramen = ramenInpnut.get(i);
+				if (ramen.getNumber() == number) {
+					System.out.println("This Ramen to be edited is " + number);
+
+					int num =-1;
+					while(num !=6) {
+						showEditMenu();
+						num=input.nextInt();
+						switch(num) {
+						case 1:
+							setRamenNumber(ramen,input);
+							break;
+						case 2:
+							setRamenNumber(ramen,input);
+							break;
+						case 3:
+							setRamenPrice(input);
+							break;
+						case 4:
+							setCompany( ramen,input);
+							break;
+						case 5 :
+							setInfo( ramen,input);
+							break;
+						default:
+							continue;
+						}
+
+
 					}
 
-
 				}
-				
 			}
 		}
-	}
-	public void setRamenNumber( RamenInput ramen, Scanner input) {
-		System.out.print("Ramen Number:");
-		int numb = input.nextInt();
-		ramen.setNumber(numb);
-	}
-	public void setRamenName( RamenInput ramen, Scanner input) {
-		System.out.print("Ramen Name:");
-		String numb = input.nextLine();
-		ramen.setName(numb);
-	}
-	public void setRamenPrice( RamenInput ramen, Scanner input) {
-		System.out.print("Ramen Price:");
-		int numb = input.nextInt();
-		ramen.setPrice(numb);
-	}
-	public void setCompany( RamenInput ramen, Scanner input) {
-		System.out.print("Ramen Company:");
-		String numb = input.nextLine();
-		ramen.setCompany(numb);
-	}
-	public void setInfo( RamenInput ramen, Scanner input) {
-		System.out.print("Ramen Info:");
-		String numb = input.nextLine();
-		ramen.setInfo(numb);
-	}
+		public void setRamenNumber( RamenInput ramen, Scanner input) {
+			System.out.print("Ramen Number:");
+			int numb = input.nextInt();
+			ramen.setNumber(numb);
+		}
+		public void setRamenName( RamenInput ramen, Scanner input) {
+			System.out.print("Ramen Name:");
+			String numb = input.nextLine();
+			ramen.setName(numb);
+		}
+		public void setRamenPrice( Scanner input) {
+			System.out.print("Ramen Price:");
+			String price = input.next();
+			this.setRamenPrice(price);
+		}
+		public void setCompany( RamenInput ramen, Scanner input) {
+			System.out.print("Ramen Company:");
+			String numb = input.nextLine();
+			ramen.setCompany(numb);
+		}
+		public void setInfo( RamenInput ramen, Scanner input) {
+			System.out.print("Ramen Info:");
+			String numb = input.nextLine();
+			ramen.setInfo(numb);
+		}
 
 
 
-	public void viewCupRamens() {
-		System.out.println("Total number of registered Cup_Ramen: " + ramenInpnut.size());
-		for (int i =0; i<ramenInpnut.size(); i++) {
-			ramenInpnut.get(i).printInfo();
+		public void viewCupRamens() {
+			System.out.println("Total number of registered Cup_Ramen: " + ramenInpnut.size());
+			for (int i =0; i<ramenInpnut.size(); i++) {
+				ramenInpnut.get(i).printInfo();
+			}
+		}
+
+		public void showEditMenu() {
+			System.out.println("Cup-Ramen Edit Menu");
+			System.out.println("Select one number between 1-6");
+			System.out.println("1. Edit Ramen number");
+			System.out.println("2. Edit Ramen name");
+			System.out.println("3. Edit Ramen price");
+			System.out.println("4. Edit Ramen company");
+			System.out.println("5. Edit Ramen information");
+			System.out.println("6. Exit");
 		}
 	}
-
-	public void showEditMenu() {
-		System.out.println("Cup-Ramen Edit Menu");
-		System.out.println("Select one number between 1-6");
-		System.out.println("1. Edit Ramen number");
-		System.out.println("2. Edit Ramen name");
-		System.out.println("3. Edit Ramen price");
-		System.out.println("4. Edit Ramen company");
-		System.out.println("5. Edit Ramen information");
-		System.out.println("6. Exit");
-	}
-}
