@@ -59,6 +59,6 @@ public class WhiteRamen extends Ramen implements RamenInput{
 		}
 		System.out.println("Kind : " + rkind + " name : " + name + " number : " + number + " price : " + price + " company : " + company + " Information : " + info + "\n");
 	}
-			
-		}
 
+		
+	}
