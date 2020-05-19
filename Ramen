@@ -2,11 +2,13 @@ package ramen;
 
 import java.util.Scanner;
 
+import exception.PriceFormatException;
+
 public abstract class Ramen {
 	protected RamenKind kind = RamenKind.Normal;
 	protected String name;
 	protected int number;
-	protected int price ;
+	protected String price ;
 	protected String company;
 	protected String info;
 
@@ -15,7 +17,7 @@ public abstract class Ramen {
 
 	}
 
-	public Ramen(String name, int number, int price, String company, String info) {
+	public Ramen(String name, int number, String price, String company, String info) {
 		this.name=name;
 		this.number=number;
 		this.price=price;
@@ -23,7 +25,7 @@ public abstract class Ramen {
 		this.info=info;
 
 	}
-	public Ramen(RamenKind kind, String name, int number, int price, String company, String info) {
+	public Ramen(RamenKind kind, String name, int number, String price, String company, String info) {
 		this.kind = kind;
 		this.name=name;
 		this.number=number;
@@ -59,11 +61,14 @@ public abstract class Ramen {
 		this.number = number;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) throws PriceFormatException{
+		if (!price.contains("원")) {
+			throw new PriceFormatException();
+		}
 		this.price = price;
 	}
 
@@ -95,10 +100,18 @@ public void setRamenName( RamenInput ramen, Scanner input) {
 	String numb = input.nextLine();
 	ramen.setName(numb);
 }
-public void setRamenprice( RamenInput ramen, Scanner input) {
+public void setRamenPrice(Scanner input) {
+	String price = "";
+	while (price.contains("원")) {
 	System.out.print("Ramen Price:");
-	int numb = input.nextInt();
-	ramen.setPrice(numb);
+	price = input.next();
+	try {
+		this.setPrice(price);
+	} catch (PriceFormatException e) {
+		System.out.println("Please write \"원\" at the end of price");
+	}
+	}
+
 }
 public void setCompany( RamenInput ramen, Scanner input) {
 	System.out.print("Ramen Company:");
