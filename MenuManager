@@ -1,44 +1,57 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuManager {
 	public static void main(String[] args) {
 
 		Scanner input = new Scanner(System.in);
-		RamenManager ramanManager = new RamenManager(input);
+		RamenManager ramenManager = new RamenManager(input);
+		selectMenu(input,ramenManager);
+
+	}
+	public static void selectMenu(Scanner input,RamenManager ramenManager) {
 		int num =-1;
-
 		while(num !=5) {
-			showMenu();
-			num=input.nextInt();
-			switch(num){
-			case 1:
-				ramanManager.addCupRamen();
-				break;
-			case 2 :
-				ramanManager.deleteCupRamen();
-				break;
-			case 3:
-				ramanManager.editCupRamen();
-				break;
-			case 4 :
-				ramanManager.viewCupRamens();
-				break;
-			default:
-				continue;
-
+			try {
+				showMenu();
+				num=input.nextInt();
+				switch(num){
+				case 1:
+					ramenManager.addCupRamen();
+					break;
+				case 2 :
+					ramenManager.deleteCupRamen();
+					break;
+				case 3:
+					ramenManager.editCupRamen();
+					break;
+				case 4 :
+					ramenManager.viewCupRamens();
+					break;
+				default:
+					continue;
+				}
 			}
+			catch(InputMismatchException e) {
+				System.out.println("please put an number between 1 and 5!");
+				if (input.hasNext()) {
+					input.next();
+				}
+				num = -1;
+			}
+
 		}
 	}
 
-	public static void showMenu() {
-		System.out.println("***Cup-Ramen Manager***");
-		System.out.println("Select one number between 1-5");
-		System.out.println("1. Add New Cup-Ramen");
-		System.out.println("2. Delete Cup-Ramen");
-		System.out.println("3. Edit Cup-Ramen");
-		System.out.println("4. View Cup-Ramens");
-		System.out.println("5. Exit");
-	}
+public static void showMenu() {
+	System.out.println("***Cup-Ramen Manager***");
+	System.out.println("Select one number between 1-5");
+	System.out.println("1. Add New Cup-Ramen");
+	System.out.println("2. Delete Cup-Ramen");
+	System.out.println("3. Edit Cup-Ramen");
+	System.out.println("4. View Cup-Ramens");
+	System.out.println("5. Exit");
 }
 
+}
 
