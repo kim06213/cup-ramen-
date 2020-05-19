@@ -15,7 +15,7 @@ public class NoSoup extends Ramen implements RamenInput{
 		
 		setRamenName(this, input);
 		
-		setRamenprice( this,  input);
+		setRamenPrice( this,  input);
 		
 		char answer = 'x';
 		while( answer != 'y' && answer!= 'Y' && answer!= 'n' && answer!= 'N') {
@@ -63,4 +63,5 @@ public class NoSoup extends Ramen implements RamenInput{
 	}
 		
 	}
+
 
