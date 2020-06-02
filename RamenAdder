@@ -1,0 +1,58 @@
+package gui;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SpringLayout;
+
+public class RamenAdder extends JFrame{
+	
+	public RamenAdder() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new SpringLayout());
+		
+		JLabel lableNumber = new JLabel("Ramen Number : ", JLabel.TRAILING);
+		JTextField fieldNumber = new JTextField(10);
+		lableNumber.setLabelFor(fieldNumber);
+		panel.add(lableNumber);
+		panel.add(fieldNumber);
+		
+		JLabel lableName = new JLabel("Name : ", JLabel.TRAILING);
+		JTextField fieldName = new JTextField(10);
+		lableName.setLabelFor(fieldName);
+		panel.add(lableName);
+		panel.add(fieldName);
+		
+		JLabel lablePrice = new JLabel("Price : ", JLabel.TRAILING);
+		JTextField fieldPrice = new JTextField(10);
+		lablePrice.setLabelFor(fieldPrice);
+		panel.add(lablePrice);
+		panel.add(fieldPrice);
+		
+		JLabel lableCompany = new JLabel("Company : ", JLabel.TRAILING);
+		JTextField fieldCompany = new JTextField(10);
+		lableCompany.setLabelFor(fieldCompany);
+		panel.add(lableCompany);
+		panel.add(fieldCompany);
+		
+		JLabel lableInfo = new JLabel("Extra Info : ", JLabel.TRAILING);
+		JTextField fieldInfo = new JTextField(10);
+		lableInfo.setLabelFor(fieldInfo);
+		panel.add(lableInfo);
+		panel.add(fieldInfo);
+		
+		panel.add(new JButton("save"));
+		panel.add(new JButton("cancel"));
+		
+		SpringUtilities.makeCompactGrid(panel, 6,2,6,6,6,6);
+		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(300,300);
+		this.setContentPane(panel);
+		this.setVisible(true);
+		
+	}
+
+}
