@@ -1,13 +1,18 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class RamenViewer extends JFrame{
+public class RamenViewer extends JPanel{
+	
+	WindowFrame frame;
 
-	public RamenViewer() {
+	public RamenViewer(WindowFrame frame) {
+		this.frame = frame;
+		
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("Ramen Number");
 		model.addColumn("NAME");
@@ -19,12 +24,6 @@ public class RamenViewer extends JFrame{
 		JScrollPane sp = new JScrollPane(table);
 		
 		this.add(sp);
-		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600,300);
-		
-		this.setVisible(true);
-		
 	}
 
 }
